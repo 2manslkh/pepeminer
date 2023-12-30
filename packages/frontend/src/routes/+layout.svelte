@@ -78,8 +78,6 @@
 
 <footer />
 
-<BottomNav />
-
 <style lang="scss">
   @import "../styles/colours";
 
