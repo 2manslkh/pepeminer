@@ -95,17 +95,14 @@ contract PepeMiner is ReentrancyGuard {
 
     constructor() {
         owner = msg.sender;
-        treasuryAddress = address(0x15bF1c3263B200514003cBba2D1B7aFEBf2D63B1);
+        treasuryAddress = address(0x420694bc7D762ba3Bc0784af0d87dbf63f2F266A);
     }
 
     function stopAirdrop() public onlyOwner {
         canAirdrop = false;
     }
 
-    function airdropChickens(
-        address[] memory addresses,
-        uint256 _amount
-    ) public onlyOwner {
+    function airdropChickens(address[] memory addresses, uint256 _amount) public onlyOwner {
         require(canAirdrop, "airdrop is stopped");
 
         for (uint256 i = 0; i < addresses.length; i++) {
@@ -120,10 +117,7 @@ contract PepeMiner is ReentrancyGuard {
         if (ref == msg.sender) {
             ref = address(0);
         }
-        if (
-            referrals[msg.sender] == address(0) &&
-            referrals[msg.sender] != msg.sender
-        ) {
+        if (referrals[msg.sender] == address(0) && referrals[msg.sender] != msg.sender) {
             referrals[msg.sender] = ref;
         }
         uint256 chickensUsed = getMyChickens();
@@ -162,10 +156,7 @@ contract PepeMiner is ReentrancyGuard {
     function deposit(address ref) public payable {
         require(initialized, "not initialized");
 
-        uint256 chickensBought = calculateChickenBuy(
-            msg.value,
-            address(this).balance - msg.value
-        );
+        uint256 chickensBought = calculateChickenBuy(msg.value, address(this).balance - msg.value);
 
         chickensBought -= devFee(chickensBought);
         uint256 fee = devFee(msg.value);
@@ -178,31 +169,20 @@ contract PepeMiner is ReentrancyGuard {
     }
 
     //magic trade balancing algorithm
-    function calculateTrade(
-        uint256 rt,
-        uint256 rs,
-        uint256 bs
-    ) public view returns (uint256) {
+    function calculateTrade(uint256 rt, uint256 rs, uint256 bs) public view returns (uint256) {
         return (PSN * bs) / (PSNH + ((PSN * rs + PSNH * rt) / rt));
     }
 
-    function calculateChickenSell(
-        uint256 chickens
-    ) public view returns (uint256) {
+    function calculateChickenSell(uint256 chickens) public view returns (uint256) {
         if (chickens == 0) return 0;
         return calculateTrade(chickens, marketChickens, address(this).balance);
     }
 
-    function calculateChickenBuy(
-        uint256 eth,
-        uint256 contractBalance
-    ) public view returns (uint256) {
+    function calculateChickenBuy(uint256 eth, uint256 contractBalance) public view returns (uint256) {
         return calculateTrade(eth, contractBalance, marketChickens);
     }
 
-    function calculateChickenBuySimple(
-        uint256 eth
-    ) public view returns (uint256) {
+    function calculateChickenBuySimple(uint256 eth) public view returns (uint256) {
         return calculateChickenBuy(eth, address(this).balance);
     }
 
@@ -225,33 +205,22 @@ contract PepeMiner is ReentrancyGuard {
     }
 
     function getMyChickens() public view returns (uint256) {
-        return
-            claimedChickens[msg.sender] + getChickensSinceLastHatch(msg.sender);
+        return claimedChickens[msg.sender] + getChickensSinceLastHatch(msg.sender);
     }
 
-    function getChickensSinceLastHatch(
-        address adr
-    ) public view returns (uint256) {
-        uint256 steps = (block.timestamp - lastWithdraw[msg.sender]) /
-            HATCH_STEP;
+    function getChickensSinceLastHatch(address adr) public view returns (uint256) {
+        uint256 steps = (block.timestamp - lastWithdraw[msg.sender]) / HATCH_STEP;
 
         // the percentage is capped at 100%
         // it takes 1 day to reach 100% after a withdrawal
-        uint256 percentage = min(
-            1e18,
-            BASE_PERCENTAGE + steps * HATCH_STEP_MODIFIER
-        );
+        uint256 percentage = min(1e18, BASE_PERCENTAGE + steps * HATCH_STEP_MODIFIER);
 
-        uint256 secondsPassed = min(
-            EGGS_TO_HATCH_1MINERS,
-            block.timestamp - lastHatch[adr]
-        );
+        uint256 secondsPassed = min(EGGS_TO_HATCH_1MINERS, block.timestamp - lastHatch[adr]);
         return ((secondsPassed * hatcheryMiners[adr]) * percentage) / 1e18;
     }
 
     function getHalvingPercentage() public view returns (uint256) {
-        uint256 steps = (block.timestamp - lastWithdraw[msg.sender]) /
-            HATCH_STEP;
+        uint256 steps = (block.timestamp - lastWithdraw[msg.sender]) / HATCH_STEP;
 
         return min(1e18, BASE_PERCENTAGE + steps * HATCH_STEP_MODIFIER);
     }

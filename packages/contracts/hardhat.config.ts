@@ -78,14 +78,14 @@ module.exports = {
       url: 'http://0.0.0.0:8545',
       saveDeployments: true,
       // accounts: "test test test test test test test test test test test junk",
-      // accounts: [PRIVATE_KEY],
+      accounts: ACCOUNT,
     },
     hardhat: {
       // TODO: Add snapshot block
-      forking: {
-        url: process.env.ALCHEMY_PROVIDER_SEPOLIA,
-        block: 4714714,
-      },
+      // forking: {
+      //   url: process.env.ALCHEMY_PROVIDER_SEPOLIA,
+      //   block: 4714714,
+      // },
       blockGasLimit: 10000000000,
       mining: {
         auto: true,
@@ -284,9 +284,13 @@ module.exports = {
   namedAccounts: {
     deployer: {
       default: 0, // here this will by default take the first account as deployer
+
+      // default: "0x694204605B39189fF6F525192aB7111F08aCD77b", // here this will by default take the first account as deployer
     },
     treasury: {
-      default: 1, // here this will by default take the second account as treasury
+      default: "0x420694bc7D762ba3Bc0784af0d87dbf63f2F266A", // here this will by default take the second account as treasury
+
+      // default: "0x420694bc7D762ba3Bc0784af0d87dbf63f2F266A", // here this will by default take the second account as treasury
     },
   },
   etherscan: {
