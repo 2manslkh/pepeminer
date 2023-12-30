@@ -1,0 +1,19 @@
+{
+  "name": "hackathon-template",
+  "version": "1.0.0",
+  "scripts": {
+    "node": "pnpm -F contracts start",
+    "test": "pnpm -F contracts test",
+    "deploy:local": "pnpm -F contracts deploy:local",
+    "deploy:dev": "pnpm -F contracts deploy:dev",
+    "deploy:sepolia": "pnpm -F contracts deploy:sepolia",
+    "deploy:mumbai": "pnpm -F contracts deploy:mumbai",
+    "web": "pnpm -F frontend wagmi && pnpm -F frontend dev",
+    "backend": "pnpm -F backend start",
+    "new-wallet": "pnpm -F contracts wallet",
+    "deploy-your-mom": "concurrently --names \"Arbitrum,Base,Celo,Gnosis,Linea,Mantle,Mumbai,Polygon,ZKVM,Scroll,Sepolia\" \"pnpm -F contracts deploy:arbitrum_testnet\" \"pnpm -F contracts deploy:base_testnet\" \"pnpm -F contracts deploy:celo_testnet\" \"pnpm -F contracts gnosis_testnet\" \"pnpm -F contracts deploy:linea_testnet\" \"pnpm -F contracts deploy:mantle_testnet\" \"pnpm -F contracts deploy:mumbai\" \"pnpm -F contracts deploy:polygon_zkvm_testnet\" \"pnpm -F contracts deploy:scroll_testnet\" \"pnpm -F contracts deploy:sepolia\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
