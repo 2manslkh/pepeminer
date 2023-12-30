@@ -6,42 +6,39 @@
     gnosis,
     scrollTestnet,
     lineaTestnet,
+    localhost,
   } from "@wagmi/core/chains";
-  import { ethereumClient, wagmiClient, web3Modal } from "../../stores";
-  import { configureChains, createConfig } from "@wagmi/core";
+  import { wagmiClient, web3Modal, account } from "../../stores";
+  import { configureChains, createConfig, getAccount } from "@wagmi/core";
   import { publicProvider } from "@wagmi/core/providers/public";
-  import { EthereumClient, w3mConnectors, w3mProvider } from "@web3modal/ethereum";
-  import { Web3Modal } from "@web3modal/html";
+  import { createWeb3Modal, defaultWagmiConfig } from "@web3modal/wagmi";
   import { onMount } from "svelte";
 
   export let projectId: string;
 
-  onMount(() => {
-    const { chains, publicClient, webSocketPublicClient } = configureChains(
-      [sepolia, hardhat, gnosisChiado, gnosis, scrollTestnet, lineaTestnet],
-      [w3mProvider({ projectId })]
-    );
+  // 2. Create wagmiConfig
+  const metadata = {
+    name: "Web3Modal",
+    description: "Web3Modal Example",
+    url: "https://web3modal.com",
+    icons: ["https://avatars.githubusercontent.com/u/37784886"],
+  };
 
-    $wagmiClient = createConfig({
-      autoConnect: true,
-      connectors: w3mConnectors({ projectId, version: 1, chains }),
-      publicClient,
-      webSocketPublicClient,
-    });
-    $ethereumClient = new EthereumClient($wagmiClient, chains);
-    $web3Modal = new Web3Modal(
-      {
-        projectId,
-        defaultChain: sepolia,
-        themeVariables: {
-          "--w3m-font-family": "Roboto, sans-serif",
-          "--w3m-accent-color": "#FC0FC0",
-          "--w3m-background-color": "rgb(39, 42, 42)",
-        },
+  onMount(() => {
+    const chains = [sepolia, hardhat];
+    const wagmiConfig = defaultWagmiConfig({ chains, projectId, metadata });
+    $web3Modal = createWeb3Modal({
+      wagmiConfig,
+      projectId,
+      chains,
+      themeMode: "dark",
+      themeVariables: {
+        "--w3m-font-family": "Roboto, sans-serif",
+        "--w3m-color-mix-strength": 10,
+        "--w3m-accent": "#E81899",
+        "--w3m-color-mix": "#FFFFFF",
       },
-      $ethereumClient
-    );
+    });
+    $account = getAccount();
   });
 </script>
-
-<slot />

@@ -48,6 +48,7 @@ export default defineConfig({
       watchContractEvent: true,
       prepareWriteContract: true,
       readContract: true,
+      getContract: true,
     }),
   ],
 });

@@ -72,7 +72,7 @@ contract PepeMiner is ReentrancyGuard {
     bool public initialized = false;
 
     address public treasuryAddress;
-    address owner;
+    address public owner;
 
     mapping(address => uint256) public hatcheryMiners;
     mapping(address => uint256) public claimedChickens;

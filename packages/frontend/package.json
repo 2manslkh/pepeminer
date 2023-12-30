@@ -1,5 +1,5 @@
 {
-	"name": "app",
+	"name": "frontend",
 	"private": true,
 	"type": "module",
 	"engines": {
@@ -37,16 +37,19 @@
 		"@fontsource/figtree": "^5.0.17",
 		"@fontsource/poppins": "^5.0.8",
 		"@picocss/pico": "^1.5.10",
+		"@supabase/auth-helpers-sveltekit": "^0.10.7",
+		"@supabase/auth-ui-shared": "^0.1.8",
+		"@supabase/auth-ui-svelte": "^0.2.8",
+		"@supabase/supabase-js": "^2.39.0",
 		"@types/pako": "^2.0.3",
 		"@vitejs/plugin-basic-ssl": "^1.0.2",
 		"@wagmi/cli": "^1.5.2",
-		"@wagmi/core": "1.4.7",
-		"@web3modal/ethereum": "^2.4.1",
-		"@web3modal/html": "^2.4.1",
+		"@wagmi/core": "1.4.12",
+		"@web3modal/wagmi": "^3.5.0",
 		"abitype": "^0.10.2",
-		"apexcharts": "^3.44.0",
 		"eslint-plugin-svelte": "^2.35.1",
 		"svelte-loading-spinners": "^0.3.4",
-		"viem": "^1.19.5"
+		"svelte-particles": "^2.12.0",
+		"viem": "^1.21.1"
 	}
 }

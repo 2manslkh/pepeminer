@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "test": "mocha",
+    "test": "hardhat test",
     "start": "hardhat node --hostname 0.0.0.0",
     "deploy": "hardhat deploy --network localhost",
     "deploy:arbitrum_testnet": "hardhat deploy --network arbitrum_testnet",

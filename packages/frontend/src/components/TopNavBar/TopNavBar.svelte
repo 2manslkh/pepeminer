@@ -1,6 +1,4 @@
 <script lang="ts">
-  import type { Web3Modal } from "@web3modal/html";
-
   // variables
   import Logo from "../../public/images/Logo.png";
   import { web3Modal } from "../../stores";
@@ -8,16 +6,11 @@
 
   let screenSize: number;
   let modalOpen = false;
-  let _web3Modal: Web3Modal;
 
   function toggleModal() {
     modalOpen = !modalOpen;
     console.log(modalOpen);
   }
-
-  web3Modal.subscribe((value) => {
-    _web3Modal = value;
-  });
 </script>
 
 <svelte:window bind:innerWidth={screenSize} />
@@ -31,21 +24,19 @@
   {#if screenSize >= breakpoints.large}
     <header-logo>
       <img src={Logo} alt="logo" width="50px" height="50px" />
-      <header-title>PROJECT_NAME</header-title>
+      <header-title>Pepe Mining</header-title>
     </header-logo>
     <header-tabs>
       <header-item>
         <a href="/">Home</a>
       </header-item>
-      <header-item>
-        <a href="/demo">Demo</a>
-      </header-item>
     </header-tabs>
-    {#if _web3Modal}
-      <w3m-wrapper>
+    {#if $web3Modal}
+      <w3m-button />
+      <!-- <w3m-wrapper>
         <w3m-network-switch style="" />
         <w3m-core-button balance="hide" icon="hide" />
-      </w3m-wrapper>
+      </w3m-wrapper> -->
     {/if}
   {/if}
 </header-wrapper>
