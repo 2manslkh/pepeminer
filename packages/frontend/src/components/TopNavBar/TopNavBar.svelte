@@ -23,8 +23,9 @@
 <header-wrapper>
   <RowContainer>
     <header-logo>
-      <img src={Logo} alt="logo" width="192px" />
+      <!-- <img src={Logo} alt="logo" width="192px" /> -->
       <!-- <header-title>PROJECT_NAME</header-title> -->
+      PEPE MINER
     </header-logo>
   </RowContainer>
   <RowContainer>
@@ -70,11 +71,14 @@
   }
   header-logo {
     /* Auto layout */
+    font-family: "ModeSeven";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    color: $primary;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
     align-items: center;
+    box-sizing: border-box;
   }
   header-wrapper {
     display: flex;
@@ -85,16 +89,15 @@
 
     width: 100%;
     max-width: 1440px;
-    gap: auto;
+    gap: 2rem;
     padding: 32px;
 
     @media screen and (max-width: $large) {
-      flex-direction: column;
+      flex-direction: column-reverse;
       justify-content: center;
       align-items: center;
       padding-left: 0px;
       padding-right: 0px;
-      height: 100px;
     }
   }
   header-title {

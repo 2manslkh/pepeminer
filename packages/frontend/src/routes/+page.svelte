@@ -7,42 +7,50 @@
     writeContract,
   } from "@wagmi/core";
   import Button from "../components/Button/Button.svelte";
-  import SearchBox from "../components/Input/SearchBox.svelte";
   import VerticalStack from "../components/Stack/VerticalStack.svelte";
   import Table from "../components/Table/Table.svelte";
   import { pepeMinerABI, prepareWritePepeMiner, readPepeMiner } from "../generated";
   import { formatEther, getChainContractAddress, parseEther, zeroAddress } from "viem";
-  import { amountDeposited, data } from "../stores";
+  import { amountDeposited, data, ethInput } from "../stores";
   import { onMount } from "svelte";
   import SectionContainer from "../components/Container/SectionContainer.svelte";
   import TextContainer from "../components/Container/TextContainer.svelte";
   import DisplayLine from "../components/Display/DisplayLine.svelte";
   import ScreenContainer from "../components/Container/ScreenContainer.svelte";
+  import InputBox from "../components/Input/InputBox.svelte";
 
   async function handleSeedMarket() {
+    const chainID = await getNetwork();
     const config = await prepareWritePepeMiner({
+      chainId: chainID.chain?.id as any,
       functionName: "seedMarket",
     });
     const result = await writeContract(config);
   }
   async function handleBuyPepe() {
+    const chainID = await getNetwork();
     const config = await prepareWritePepeMiner({
+      chainId: chainID.chain?.id as any,
       functionName: "deposit",
       args: [zeroAddress], //TODO: replace with referral address
-      value: parseEther("1"),
+      value: parseEther($ethInput),
     });
     const result = await writeContract(config);
   }
 
   async function handleCompound() {
+    const chainID = await getNetwork();
     const config = await prepareWritePepeMiner({
+      chainId: chainID.chain?.id as any,
       functionName: "compound",
       args: [zeroAddress], //TODO: replace with referral address
     });
     const result = await writeContract(config);
   }
   async function handleClaim() {
+    const chainID = await getNetwork();
     const config = await prepareWritePepeMiner({
+      chainId: chainID.chain?.id as any,
       functionName: "withdraw",
     });
     const result = await writeContract(config);
@@ -91,7 +99,10 @@
       </div>
       <VerticalStack>
         <Button buttonText="Seed Market 🌱" handleClick={handleSeedMarket}></Button>
-        <Button buttonText="Buy Pepe 🐸" handleClick={handleBuyPepe}></Button>
+        <div class="buy-pepe">
+          <InputBox></InputBox>
+          <Button buttonText="Buy Pepe 🐸" handleClick={handleBuyPepe}></Button>
+        </div>
         <Button buttonText="Compound 🔄" handleClick={handleCompound}></Button>
         <Button buttonText="Claim 💰" handleClick={handleClaim}></Button>
       </VerticalStack>
@@ -107,6 +118,11 @@
     box-sizing: border-box;
   }
 
+  .buy-pepe {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
   .info-container {
     padding: 0rem 1rem;
     box-sizing: border-box;
@@ -115,6 +131,7 @@
     flex-direction: column;
     justify-content: center;
     max-width: 400px;
+    width: 100%;
   }
 
   strong {

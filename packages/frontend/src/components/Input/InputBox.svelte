@@ -1,127 +1,58 @@
 <script lang="ts">
-  let name = "world";
-  // @ts-ignore
-  import HorizontalStack from "../Stack/HorizontalStack.svelte";
+  import { ethInput } from "../../stores";
 
-  import ErrorX from "../../public/images/file-x.svg";
-  import Success from "../../public/images/file-check.svg";
-  import { recoverMessageAddress } from "viem";
-  let _currentProof: string;
-  let input: string;
-  let message: string;
-  let status: string = "";
+  let _input: string;
 
-  async function handleClick() {
-    let result = await recoverMessageAddress({
-      message: "Hello World",
-      signature: input as `0x${string}`,
-    });
-    console.log(result);
-    if (result) {
-      status = "success";
-      message = result;
+  function validateInput(event: Event) {
+    const regex: RegExp = /^[0-9]*\.?[0-9]*$/; // Regex for numbers and decimals
+    const input: string = (event.target as HTMLInputElement).value;
+
+    if (regex.test(input)) {
+      $ethInput = input;
+      console.log("🚀 | validateInput | ethInput:", $ethInput);
     } else {
-      status = "error";
+      (event.target as HTMLInputElement).value = $ethInput; // Reset to last valid value
     }
   }
 </script>
 
-<container>
-  <HorizontalStack>
-    <input bind:value={input} />
-    <button on:click={handleClick}>
-      <button-text>Verify</button-text>
-    </button>
-  </HorizontalStack>
-  <info>
-    {#if status == "error"}
-      <img src={ErrorX} alt="Error" />
-      <info-text>Error</info-text>
-    {:else if status == "success"}
-      <img src={Success} alt="Error" />
-      <info-text>{message}</info-text>
-    {/if}
-  </info>
-</container>
+<input type="text" bind:value={_input} on:input={validateInput} placeholder="$AVAX" />
 
 <style lang="scss">
   @import "../../styles/colours";
-  container {
-    /* Auto layout */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-  }
-  info {
-    /* Auto layout */
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0px;
-    gap: 8px;
-    width: 100%;
-  }
+
   input {
     /* box-sizing: border-box; */
-
-    width: 100%;
-    height: 40px;
-
-    border: 1px solid $primary;
-    border-radius: 8px;
-  }
-  button {
-    /* Buttons */
-
-    box-sizing: border-box;
-
-    /* Auto layout */
-
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 16px;
-    gap: 8px;
-
-    width: 100px;
-    height: 40px;
-
-    background: $primary_border;
-    border: 0px;
-    border-bottom: 4px solid $primary;
-    border-radius: 10px;
-
-    /* Inside auto layout */
-  }
-
-  button:active {
-    background: $secondary_2;
-    border: 0px;
-    border-bottom: 4px solid $primary;
-    border-radius: 10px;
-  }
-
-  button-text {
-    /* NEXT */
-
-    width: auto;
-    height: 21px;
-
-    font-family: "Poppins";
+    font-family: "ModeSeven";
     font-style: normal;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 8px;
     line-height: 21px;
-    /* identical to box height */
 
     display: flex;
+    padding: 8px 1rem;
+    border-radius: 5px;
+    border: 2px solid $primary_border;
+    box-shadow: 0px 0px 5px 0px $primary_border;
+    height: 100%;
+
+    justify-content: center;
     align-items: center;
-    text-align: center;
 
-    color: $secondary_1;
+    width: auto;
 
-    /* Inside auto layout */
+    color: $primary;
+    font-size: 1rem;
+    font-weight: 400;
+    background: $background;
+    text-align: right;
+
+    cursor: pointer;
+  }
+
+  input::placeholder {
+    text-align: right;
+    color: #909090; /* Your desired color */
+    opacity: 1; /* Optional: Adjust the opacity of the placeholder text */
   }
 </style>

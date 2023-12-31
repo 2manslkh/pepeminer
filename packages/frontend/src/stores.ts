@@ -10,8 +10,9 @@ export const signature = writable<string>("");
 export const typedSignature = writable<string>("");
 
 
-export const input = writable<string>("");
+export const ethInput = writable<string>("");
 export const amountDeposited = writable<bigint>(0n);
+
 export type PepeMinerData = {
     user_chickens: bigint,
     contract_balance: bigint,

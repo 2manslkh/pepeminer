@@ -12,34 +12,25 @@
 <style lang="scss">
   @import "../../styles/colours";
   button {
-    /* Frame 2 */
-
-    /* Auto layout */
     display: flex;
     padding: 8px;
-    align-items: center;
-    min-width: 160px;
-    justify-content: center;
+    min-width: 320px;
     border-radius: 5px;
     border: 2px solid $primary_border;
     box-shadow: 0px 0px 5px 0px $primary_border;
     height: 100%;
 
-    display: flex;
     justify-content: center;
     align-items: center;
 
     width: auto;
 
-    /* Inside auto layout */
     color: $background;
     font-size: 1rem;
     font-weight: 400;
     background: $background;
 
     cursor: pointer;
-
-    /* Inside auto layout */
   }
 
   button:active {

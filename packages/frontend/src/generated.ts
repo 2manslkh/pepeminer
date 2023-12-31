@@ -17,7 +17,8 @@ import {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x47A35E631a8f1bF9CbcdAEf91384D4B8ffd41B97)
  */
 export const pepeMinerABI = [
   { stateMutability: 'nonpayable', type: 'constructor', inputs: [] },
@@ -206,14 +207,17 @@ export const pepeMinerABI = [
 ] as const
 
 /**
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x47A35E631a8f1bF9CbcdAEf91384D4B8ffd41B97)
  */
 export const pepeMinerAddress = {
   31337: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+  11155111: '0x47A35E631a8f1bF9CbcdAEf91384D4B8ffd41B97',
 } as const
 
 /**
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x47A35E631a8f1bF9CbcdAEf91384D4B8ffd41B97)
  */
 export const pepeMinerConfig = { address: pepeMinerAddress, abi: pepeMinerABI } as const
 
@@ -232,18 +236,24 @@ export const reentrancyGuardABI = [
 /**
  * Wraps __{@link getContract}__ with `abi` set to __{@link pepeMinerABI}__.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x47A35E631a8f1bF9CbcdAEf91384D4B8ffd41B97)
  */
 export function getPepeMiner(
   config: Omit<GetContractArgs, 'abi' | 'address'> & { chainId?: keyof typeof pepeMinerAddress },
 ) {
-  return getContract({ abi: pepeMinerABI, address: pepeMinerAddress[31337], ...config })
+  return getContract({
+    abi: pepeMinerABI,
+    address: pepeMinerAddress[config.chainId as keyof typeof pepeMinerAddress],
+    ...config,
+  })
 }
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link pepeMinerABI}__.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x47A35E631a8f1bF9CbcdAEf91384D4B8ffd41B97)
  */
 export function readPepeMiner<
   TAbi extends readonly unknown[] = typeof pepeMinerABI,
@@ -255,7 +265,7 @@ export function readPepeMiner<
 ) {
   return readContract({
     abi: pepeMinerABI,
-    address: pepeMinerAddress[31337],
+    address: pepeMinerAddress[config.chainId as keyof typeof pepeMinerAddress],
     ...config,
   } as unknown as ReadContractConfig<TAbi, TFunctionName>)
 }
@@ -263,7 +273,8 @@ export function readPepeMiner<
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link pepeMinerABI}__.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x47A35E631a8f1bF9CbcdAEf91384D4B8ffd41B97)
  */
 export function writePepeMiner<
   TFunctionName extends string,
@@ -282,7 +293,7 @@ export function writePepeMiner<
 ) {
   return writeContract({
     abi: pepeMinerABI,
-    address: pepeMinerAddress[31337],
+    address: pepeMinerAddress[config.chainId as keyof typeof pepeMinerAddress],
     ...config,
   } as unknown as WriteContractArgs<typeof pepeMinerABI, TFunctionName>)
 }
@@ -290,7 +301,8 @@ export function writePepeMiner<
 /**
  * Wraps __{@link prepareWriteContract}__ with `abi` set to __{@link pepeMinerABI}__.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x47A35E631a8f1bF9CbcdAEf91384D4B8ffd41B97)
  */
 export function prepareWritePepeMiner<
   TAbi extends readonly unknown[] = typeof pepeMinerABI,
@@ -302,7 +314,7 @@ export function prepareWritePepeMiner<
 ) {
   return prepareWriteContract({
     abi: pepeMinerABI,
-    address: pepeMinerAddress[31337],
+    address: pepeMinerAddress[config.chainId as keyof typeof pepeMinerAddress],
     ...config,
   } as unknown as PrepareWriteContractConfig<TAbi, TFunctionName>)
 }
