@@ -13,7 +13,7 @@
   import BottomNav from "../components/BottomNav/BottomNav.svelte";
   import MaxWidthContainer from "../components/Container/MaxWidthContainer.svelte";
   import { getPepeMiner } from "../generated";
-  import { type PepeMinerData, data } from "../stores";
+  import { type PepeMinerData, data, showToast } from "../stores";
 
   const projectId = import.meta.env.VITE_WEB3MODAL_PROJECT_ID;
   // Throw Error if no projectId is set
@@ -72,9 +72,10 @@
 <pepe-underlay />
 
 <main>
-  <MaxWidthContainer>
-    <slot />
-  </MaxWidthContainer>
+  {#if $showToast}
+    <div class="toast">Text copied to clipboard!</div>
+  {/if}
+  <slot />
 </main>
 
 <!-- <footer /> -->

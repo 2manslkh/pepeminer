@@ -29,6 +29,8 @@ export const data = writable<PepeMinerData>({
 
 
 export const toasts = writable<Toast[]>([]);
+export const showToast = writable<boolean>(false);
+
 
 interface Toast {
     id?: number;
