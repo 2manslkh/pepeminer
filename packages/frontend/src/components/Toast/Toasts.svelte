@@ -16,7 +16,7 @@
   </section>
 {/if}
 
-<style lang="postcss">
+<style lang="scss">
   section {
     position: fixed;
     bottom: 0;

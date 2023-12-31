@@ -9,7 +9,6 @@
   } from "@wagmi/core";
   import Button from "../components/Button/Button.svelte";
   import VerticalStack from "../components/Stack/VerticalStack.svelte";
-  import Table from "../components/Table/Table.svelte";
   import { pepeMinerABI, prepareWritePepeMiner, readPepeMiner } from "../generated";
   import { formatEther, getChainContractAddress, parseEther, zeroAddress } from "viem";
   import { addToast, amountDeposited, data, ethInput } from "../stores";
@@ -30,7 +29,7 @@
     addToast({
       id: Math.floor(Math.random() * 10000),
       message: `Transaction Pending...`,
-      type: "success",
+      type: "info",
       timeout: 8000,
     });
     const data = await waitForTransaction({
@@ -55,7 +54,7 @@
     addToast({
       id: Math.floor(Math.random() * 10000),
       message: `Transaction Pending...`,
-      type: "success",
+      type: "info",
       timeout: 8000,
     });
     const data = await waitForTransaction({
@@ -80,7 +79,7 @@
     addToast({
       id: Math.floor(Math.random() * 10000),
       message: `Transaction Pending...`,
-      type: "success",
+      type: "info",
       timeout: 8000,
     });
     const data = await waitForTransaction({
@@ -103,7 +102,7 @@
     addToast({
       id: Math.floor(Math.random() * 10000),
       message: `Transaction Pending...`,
-      type: "success",
+      type: "info",
       timeout: 8000,
     });
     const data = await waitForTransaction({
@@ -135,7 +134,7 @@
     <VerticalStack>
       <div class="info-container">
         <p>
-          <strong>1. Buy Chickens</strong> Start by using your AVAX to purchase chickens
+          <strong>1. Buy Pepes</strong> Start by using your AVAX to purchase pepes
         </p>
         <p>
           <strong>2. Compound</strong> To maximize your earnings, you can compound your earnings daily
@@ -145,17 +144,33 @@
           to your wallet
         </p>
         <p>
-          The key to maximizing your rewards is based on the number of chicken miners you have and
-          the frequency with which you reinvest the eggs they lay. The more chicken miners you
-          gather and the more consistently you utilize their eggs, either by reinvesting or
-          expanding your flock, the higher your potential for earning additional rewards.
+          Maximize your PepeMiner rewards by increasing your Pepe miners and regularly reinvesting
+          the tokens they produce. More miners and strategic reinvestment lead to higher earnings.
         </p>
         <TextContainer>
           PEPE MINER
-          <DisplayLine lineInfo={{ name: "TVL", value: "$100,000,000" }}></DisplayLine>
-          <DisplayLine lineInfo={{ name: "Contract", value: "100,000 $AVAX" }}></DisplayLine>
-          <DisplayLine lineInfo={{ name: "Pepe Miners", value: "42069" }}></DisplayLine>
-          <DisplayLine lineInfo={{ name: "Your Rewards", value: "1234 $AVAX" }}></DisplayLine>
+          <DisplayLine
+            lineInfo={{
+              name: "TVL",
+              value: `$ ${(Number(formatEther($data.contract_balance)) * 40).toFixed(3)}`,
+            }}
+          ></DisplayLine>
+          <DisplayLine
+            lineInfo={{
+              name: "Contract",
+              value: `${Number(formatEther($data.contract_balance)).toFixed(3)} $AVAX`,
+            }}
+          ></DisplayLine>
+          <DisplayLine lineInfo={{ name: "Pepe Miners", value: `${$data.user_miners}` }}
+          ></DisplayLine>
+          <DisplayLine
+            lineInfo={{
+              name: "Your Rewards",
+              value: `${Number(formatEther($data.user_profit ? $data.user_profit : "0")).toFixed(
+                6,
+              )} $AVAX`,
+            }}
+          ></DisplayLine>
           <DisplayLine lineInfo={{ name: "Claim Power", value: "100%" }}></DisplayLine>
           PEPE STATS
           <DisplayLine lineInfo={{ name: "Daily Returns", value: "4-12%" }}></DisplayLine>
@@ -203,6 +218,8 @@
     justify-content: center;
     max-width: 400px;
     width: 100%;
+
+    word-break: keep-all;
   }
 
   strong {

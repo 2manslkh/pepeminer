@@ -28,7 +28,7 @@
     font-weight: 600;
     font-size: 14px;
     line-height: 21px;
-    color: white;
+
     padding: 0.75rem 1.5rem;
     border-radius: 0.2rem;
     display: flex;
@@ -39,13 +39,16 @@
     cursor: pointer;
   }
   .error {
-    background: IndianRed;
+    background: black;
+    border: 1px solid IndianRed;
   }
   .success {
-    background: MediumSeaGreen;
+    background: black;
+    border: 1px solid MediumSeaGreen;
   }
   .info {
-    background: SkyBlue;
+    background: black;
+    border: 1px solid SkyBlue;
   }
   .text {
     margin-left: 1rem;

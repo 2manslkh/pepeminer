@@ -6,7 +6,7 @@
   import "@fontsource/figtree/400.css"; // Defaults to weight 400.
   import "@fontsource/figtree/700.css"; // Defaults to weight 400.
   import WalletConnect from "../components/Web3/WalletConnect.svelte";
-  import { getAccount, getNetwork, multicall, readContracts } from "@wagmi/core";
+  import { getAccount, getNetwork, multicall, readContract, readContracts } from "@wagmi/core";
   import type { Chain } from "@wagmi/core";
   import TopNavBar from "../components/TopNavBar/TopNavBar.svelte";
   import { onMount } from "svelte";
@@ -33,21 +33,52 @@
 
     let results = await readContracts({
       contracts: [
-        { ...pepeContract, functionName: "getMyChickens" },
         { ...pepeContract, functionName: "getBalance" },
-        { ...pepeContract, functionName: "getMyMiners" },
         { ...pepeContract, functionName: "getHalvingPercentage" },
         { ...pepeContract, functionName: "getChickensSinceLastHatch", args: [account.address] },
       ],
     });
 
     let _data: PepeMinerData = {
-      user_chickens: results[0].result as bigint,
-      contract_balance: results[1].result as bigint,
-      user_miners: results[2].result as bigint,
-      halving_percentage: results[3].result as bigint,
-      chickens_since_last_hatch: results[4].result as bigint,
+      contract_balance: results[0].result as bigint,
+      halving_percentage: results[1].result as bigint,
+      chickens_since_last_hatch: results[2].result as bigint,
     };
+
+    // Get user chickens
+    let userChickens = await readContract({
+      address: pepeContract.address,
+      abi: pepeContract.abi,
+      chainId: chain.id as any,
+      functionName: "getMyChickens",
+      account: account.address,
+    });
+
+    _data.user_chickens = userChickens;
+
+    // Get user miners
+    let userMiners = await readContract({
+      address: pepeContract.address,
+      abi: pepeContract.abi,
+      chainId: chain.id as any,
+      functionName: "getMyMiners",
+      account: account.address,
+    });
+
+    _data.user_miners = userMiners;
+
+    // Get user Profit
+    let userProfit = await readContract({
+      address: pepeContract.address,
+      abi: pepeContract.abi,
+      chainId: chain.id as any,
+      functionName: "calculateChickenSell",
+      args: [userChickens],
+      account: account.address,
+    });
+    _data.user_profit = userProfit;
+
+    console.log("🚀 | fetchPepeMiningData | _data:", _data);
 
     $data = _data;
   }

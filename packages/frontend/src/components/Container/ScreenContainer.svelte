@@ -16,6 +16,7 @@
     z-index: 1;
     overflow-y: scroll;
     overflow-x: hidden;
+    word-break: keep-all;
   }
 
   container::-webkit-scrollbar-thumb {

@@ -14,11 +14,12 @@ export const ethInput = writable<string>("");
 export const amountDeposited = writable<bigint>(0n);
 
 export type PepeMinerData = {
-    user_chickens: bigint,
     contract_balance: bigint,
-    user_miners: bigint,
     halving_percentage: bigint,
     chickens_since_last_hatch: bigint
+    user_miners?: bigint,
+    user_chickens?: bigint,
+    user_profit?: bigint,
 };
 export const data = writable<PepeMinerData>({
     user_chickens: 0n,
