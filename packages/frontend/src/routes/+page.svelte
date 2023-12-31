@@ -25,21 +25,37 @@
   async function handleBuyPepe() {
     const config = await prepareWritePepeMiner({
       functionName: "deposit",
-      args: [zeroAddress],
+      args: [zeroAddress], //TODO: replace with referral address
       value: parseEther("1"),
     });
     const result = await writeContract(config);
   }
+
+  async function handleCompound() {
+    const config = await prepareWritePepeMiner({
+      functionName: "compound",
+      args: [zeroAddress], //TODO: replace with referral address
+    });
+    const result = await writeContract(config);
+  }
+  async function handleClaim() {
+    const config = await prepareWritePepeMiner({
+      functionName: "withdraw",
+    });
+    const result = await writeContract(config);
+  }
+
   let screenSize: number;
 </script>
 
 <svelte:window bind:innerWidth={screenSize} />
-
 <SectionContainer id="main" stripes={true}>
   <VerticalStack>
     <VerticalStack>
-      <Button on:click={handleSeedMarket}>Seed Market</Button>
-      <Button on:click={handleBuyPepe}>Buy Pepe</Button>
+      <Button buttonText="Seed Market 🌱" handleClick={handleSeedMarket}></Button>
+      <Button buttonText="Buy Pepe 🐸" handleClick={handleBuyPepe}></Button>
+      <Button buttonText="Compound 🔄" handleClick={handleCompound}></Button>
+      <Button buttonText="Claim 💰" handleClick={handleClaim}></Button>
     </VerticalStack>
   </VerticalStack>
 </SectionContainer>

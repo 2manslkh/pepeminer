@@ -16,10 +16,10 @@
 
     /* Auto layout */
     display: flex;
-    padding: 16px;
+    padding: 8px;
     align-items: center;
+    min-width: 160px;
     justify-content: center;
-    gap: 40px;
     border-radius: 5px;
     border: 2px solid $primary_border;
     box-shadow: 0px 0px 5px 0px $primary_border;
