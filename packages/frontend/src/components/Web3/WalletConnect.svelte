@@ -1,13 +1,5 @@
 <script lang="ts">
-  import {
-    sepolia,
-    hardhat,
-    gnosisChiado,
-    gnosis,
-    scrollTestnet,
-    lineaTestnet,
-    localhost,
-  } from "@wagmi/core/chains";
+  import { sepolia, hardhat, avalanche } from "@wagmi/core/chains";
   import { wagmiClient, web3Modal, account } from "../../stores";
   import { configureChains, createConfig, getAccount } from "@wagmi/core";
   import { publicProvider } from "@wagmi/core/providers/public";
@@ -18,14 +10,14 @@
 
   // 2. Create wagmiConfig
   const metadata = {
-    name: "Web3Modal",
-    description: "Web3Modal Example",
-    url: "https://web3modal.com",
+    name: "PepeMiner",
+    description: "Welcome to pepeminer",
+    url: "https://pepeminer.xyz",
     icons: ["https://avatars.githubusercontent.com/u/37784886"],
   };
 
   onMount(() => {
-    const chains = [sepolia, hardhat];
+    const chains = [sepolia, hardhat, avalanche];
     const wagmiConfig = defaultWagmiConfig({ chains, projectId, metadata });
     $web3Modal = createWeb3Modal({
       wagmiConfig,
