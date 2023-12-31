@@ -2,6 +2,7 @@
   interface LineInfo {
     name: string;
     value: string;
+    bling?: string;
   }
   export let lineInfo: LineInfo;
 </script>
@@ -9,7 +10,7 @@
 <container>
   <info-name>{lineInfo.name}:</info-name>
   <info-value-bg>
-    <info-value>{lineInfo.value}</info-value>
+    <info-value> <div class={lineInfo.bling ? "bling" : ""}>{lineInfo.value}</div></info-value>
   </info-value-bg>
 </container>
 
@@ -76,5 +77,35 @@
 
     width: 100%;
     animation: fadeInAnimation 0.5s ease-in-out;
+  }
+  @keyframes rainbow-text {
+    0% {
+      color: #ff5555;
+    } /* muted red */
+    14% {
+      color: #ffab55;
+    } /* muted orange */
+    28% {
+      color: #ffee55;
+    } /* muted yellow */
+    42% {
+      color: #55ff55;
+    } /* muted green */
+    57% {
+      color: #5555ff;
+    } /* muted blue */
+    71% {
+      color: #7e55ff;
+    } /* muted indigo */
+    85% {
+      color: #ff55ff;
+    } /* muted violet */
+    100% {
+      color: #ff5555;
+    } /* back to muted red */
+  }
+
+  .bling {
+    animation: rainbow-text 0.2s linear infinite;
   }
 </style>

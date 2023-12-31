@@ -81,7 +81,7 @@
           <DisplayLine lineInfo={{ name: "Claim Power", value: "100%" }}></DisplayLine>
           PEPE STATS
           <DisplayLine lineInfo={{ name: "Daily Returns", value: "4-12%" }}></DisplayLine>
-          <DisplayLine lineInfo={{ name: "APR", value: "~9999%" }}></DisplayLine>
+          <DisplayLine lineInfo={{ name: "APR", value: "~9999%", bling: "bling" }}></DisplayLine>
           <DisplayLine lineInfo={{ name: "Dev Fee", value: "5%" }}></DisplayLine>
         </TextContainer>
         <p>
