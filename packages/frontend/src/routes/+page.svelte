@@ -4,6 +4,7 @@
     prepareWriteContract,
     readContract,
     readContracts,
+    waitForTransaction,
     writeContract,
   } from "@wagmi/core";
   import Button from "../components/Button/Button.svelte";
@@ -11,7 +12,7 @@
   import Table from "../components/Table/Table.svelte";
   import { pepeMinerABI, prepareWritePepeMiner, readPepeMiner } from "../generated";
   import { formatEther, getChainContractAddress, parseEther, zeroAddress } from "viem";
-  import { amountDeposited, data, ethInput } from "../stores";
+  import { addToast, amountDeposited, data, ethInput } from "../stores";
   import { onMount } from "svelte";
   import SectionContainer from "../components/Container/SectionContainer.svelte";
   import TextContainer from "../components/Container/TextContainer.svelte";
@@ -25,7 +26,22 @@
       chainId: chainID.chain?.id as any,
       functionName: "seedMarket",
     });
-    const result = await writeContract(config);
+    const { hash } = await writeContract(config);
+    addToast({
+      id: Math.floor(Math.random() * 10000),
+      message: `Transaction Pending...`,
+      type: "success",
+      timeout: 8000,
+    });
+    const data = await waitForTransaction({
+      hash,
+    });
+    addToast({
+      id: Math.floor(Math.random() * 10000),
+      message: `Seeded market`,
+      type: "success",
+      timeout: 8000,
+    });
   }
   async function handleBuyPepe() {
     const chainID = await getNetwork();
@@ -35,7 +51,22 @@
       args: [zeroAddress], //TODO: replace with referral address
       value: parseEther($ethInput),
     });
-    const result = await writeContract(config);
+    const { hash } = await writeContract(config);
+    addToast({
+      id: Math.floor(Math.random() * 10000),
+      message: `Transaction Pending...`,
+      type: "success",
+      timeout: 8000,
+    });
+    const data = await waitForTransaction({
+      hash,
+    });
+    addToast({
+      id: Math.floor(Math.random() * 10000),
+      message: `Successfully deposited ${$ethInput} AVAX`,
+      type: "success",
+      timeout: 8000,
+    });
   }
 
   async function handleCompound() {
@@ -45,7 +76,22 @@
       functionName: "compound",
       args: [zeroAddress], //TODO: replace with referral address
     });
-    const result = await writeContract(config);
+    const { hash } = await writeContract(config);
+    addToast({
+      id: Math.floor(Math.random() * 10000),
+      message: `Transaction Pending...`,
+      type: "success",
+      timeout: 8000,
+    });
+    const data = await waitForTransaction({
+      hash,
+    });
+    addToast({
+      id: Math.floor(Math.random() * 10000),
+      message: `Pepes have been compounded`,
+      type: "success",
+      timeout: 8000,
+    });
   }
   async function handleClaim() {
     const chainID = await getNetwork();
@@ -53,7 +99,31 @@
       chainId: chainID.chain?.id as any,
       functionName: "withdraw",
     });
-    const result = await writeContract(config);
+    const { hash } = await writeContract(config);
+    addToast({
+      id: Math.floor(Math.random() * 10000),
+      message: `Transaction Pending...`,
+      type: "success",
+      timeout: 8000,
+    });
+    const data = await waitForTransaction({
+      hash,
+    });
+    addToast({
+      id: Math.floor(Math.random() * 10000),
+      message: `Pepes have been claimed`,
+      type: "success",
+      timeout: 8000,
+    });
+  }
+
+  async function handleTestToast() {
+    addToast({
+      id: Math.floor(Math.random() * 10000),
+      message: "Test Toast",
+      type: "success",
+      timeout: 8000,
+    });
   }
 
   let screenSize: number;
@@ -105,6 +175,7 @@
         </div>
         <Button buttonText="Compound 🔄" handleClick={handleCompound}></Button>
         <Button buttonText="Claim 💰" handleClick={handleClaim}></Button>
+        <Button buttonText="test toast" handleClick={handleTestToast}></Button>
       </VerticalStack>
     </VerticalStack>
   </ScreenContainer>

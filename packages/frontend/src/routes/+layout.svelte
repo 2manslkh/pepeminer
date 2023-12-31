@@ -10,10 +10,9 @@
   import type { Chain } from "@wagmi/core";
   import TopNavBar from "../components/TopNavBar/TopNavBar.svelte";
   import { onMount } from "svelte";
-  import BottomNav from "../components/BottomNav/BottomNav.svelte";
-  import MaxWidthContainer from "../components/Container/MaxWidthContainer.svelte";
   import { getPepeMiner } from "../generated";
   import { type PepeMinerData, data, showToast } from "../stores";
+  import Toasts from "../components/Toast/Toasts.svelte";
 
   const projectId = import.meta.env.VITE_WEB3MODAL_PROJECT_ID;
   // Throw Error if no projectId is set
@@ -71,10 +70,8 @@
 <pepe-underlay />
 
 <main>
-  {#if $showToast}
-    <div class="toast">Text copied to clipboard!</div>
-  {/if}
   <slot />
+  <Toasts />
 </main>
 
 <!-- <footer /> -->
