@@ -166,7 +166,7 @@
           <DisplayLine
             lineInfo={{
               name: "Your Rewards",
-              value: `${Number(formatEther($data.user_profit ? $data.user_profit : "0")).toFixed(
+              value: `${Number(formatEther($data.user_profit ? $data.user_profit : 0n)).toFixed(
                 6,
               )} $AVAX`,
             }}
