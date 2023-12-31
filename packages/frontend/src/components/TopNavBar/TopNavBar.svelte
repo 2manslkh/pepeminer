@@ -1,8 +1,12 @@
 <script lang="ts">
   // variables
-  import Logo from "../../public/images/Logo.png";
+  import Logo from "../../public/images/Logo.svg";
   import { web3Modal } from "../../stores";
   import { breakpoints } from "../../styles/breakpoints";
+  import RowContainer from "../Container/RowContainer.svelte";
+  import TextContainer from "../Container/TextContainer.svelte";
+  import TelegramLogo from "../SocialIcons/TelegramLogo.svelte";
+  import TwitterLogo from "../SocialIcons/TwitterLogo.svelte";
 
   let screenSize: number;
   let modalOpen = false;
@@ -16,28 +20,20 @@
 <svelte:window bind:innerWidth={screenSize} />
 
 <header-wrapper>
-  {#if screenSize < breakpoints.large}
-    <header-logo>
-      <img src={Logo} alt="logo" width="50px" height="50px" />
-    </header-logo>
-  {/if}
   {#if screenSize >= breakpoints.large}
-    <header-logo>
-      <img src={Logo} alt="logo" width="50px" height="50px" />
-      <header-title>Pepe Mining</header-title>
-    </header-logo>
-    <header-tabs>
-      <header-item>
-        <a href="/">Home</a>
-      </header-item>
-    </header-tabs>
-    {#if $web3Modal}
-      <w3m-button />
-      <!-- <w3m-wrapper>
-        <w3m-network-switch style="" />
-        <w3m-core-button balance="hide" icon="hide" />
-      </w3m-wrapper> -->
-    {/if}
+    <RowContainer>
+      <header-logo>
+        <img src={Logo} alt="logo" width="192px" />
+        <!-- <header-title>PROJECT_NAME</header-title> -->
+      </header-logo>
+    </RowContainer>
+    <RowContainer>
+      <TelegramLogo />
+      <TwitterLogo />
+      {#if $web3Modal}
+        <w3m-button />
+      {/if}
+    </RowContainer>
   {/if}
 </header-wrapper>
 
@@ -57,12 +53,12 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    /* position: fixed; */
 
     width: 100%;
-    max-width: 1200px;
+    max-width: 1440px;
     gap: auto;
-    height: 100px;
-    padding: 0px 16px;
+    padding: 32px;
 
     @media screen and (max-width: $large) {
       flex-direction: column;

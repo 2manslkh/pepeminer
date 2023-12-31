@@ -12,42 +12,53 @@
 <style lang="scss">
   @import "../../styles/colours";
   button {
-    /* Buttons */
-
-    box-sizing: border-box;
+    /* Frame 2 */
 
     /* Auto layout */
+    display: flex;
+    padding: 16px;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    border-radius: 5px;
+    border: 2px solid $primary_border;
+    box-shadow: 0px 0px 5px 0px $primary_border;
+    height: 100%;
 
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 10px 16px;
-    gap: 8px;
 
-    width: 100%;
-    height: 40px;
+    width: auto;
 
-    background: $primary_border;
-    border: 0px;
-    border-bottom: 4px solid $primary;
-    border-radius: 10px;
+    /* Inside auto layout */
+    color: $background;
+    font-size: 1rem;
+    font-weight: 400;
+    background: $background;
+
     cursor: pointer;
 
     /* Inside auto layout */
   }
 
   button:active {
-    background: $secondary_2;
-    border: 0px;
-    border-bottom: 4px solid $primary;
-    border-radius: 10px;
+    color: $secondary_1;
+    scale: 0.95;
+  }
+
+  button:hover {
+    color: $secondary_1;
+    box-shadow:
+      0px 0px 5px 0px $primary_border,
+      0px 0px 10px 0px $primary_border,
+      0px 0px 30px 0px $primary_border;
   }
 
   button-text {
     /* NEXT */
 
-    font-family: "Poppins";
+    font-family: "ModeSeven";
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -58,7 +69,7 @@
     align-items: center;
     text-align: center;
 
-    color: $secondary_1;
+    color: $primary;
 
     /* Inside auto layout */
 

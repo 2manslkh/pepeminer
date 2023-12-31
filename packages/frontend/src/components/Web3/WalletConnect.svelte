@@ -33,10 +33,11 @@
       chains,
       themeMode: "dark",
       themeVariables: {
-        "--w3m-font-family": "Roboto, sans-serif",
+        "--w3m-font-family": "ModeSeven",
         "--w3m-color-mix-strength": 10,
-        "--w3m-accent": "#E81899",
-        "--w3m-color-mix": "#FFFFFF",
+        "--w3m-accent": "#E8189900",
+        "--w3m-color-mix": "#E81899",
+        "--w3m-border-radius-master": "0px",
       },
     });
     $account = getAccount();
