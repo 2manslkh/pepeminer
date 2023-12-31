@@ -15,6 +15,9 @@
   import { amountDeposited, data } from "../stores";
   import { onMount } from "svelte";
   import SectionContainer from "../components/Container/SectionContainer.svelte";
+  import TextContainer from "../components/Container/TextContainer.svelte";
+  import DisplayLine from "../components/Display/DisplayLine.svelte";
+  import ScreenContainer from "../components/Container/ScreenContainer.svelte";
 
   async function handleSeedMarket() {
     const config = await prepareWritePepeMiner({
@@ -50,115 +53,72 @@
 
 <svelte:window bind:innerWidth={screenSize} />
 <SectionContainer id="main" stripes={true}>
-  <VerticalStack>
+  <ScreenContainer>
     <VerticalStack>
-      <Button buttonText="Seed Market 🌱" handleClick={handleSeedMarket}></Button>
-      <Button buttonText="Buy Pepe 🐸" handleClick={handleBuyPepe}></Button>
-      <Button buttonText="Compound 🔄" handleClick={handleCompound}></Button>
-      <Button buttonText="Claim 💰" handleClick={handleClaim}></Button>
+      <div class="info-container">
+        <p>
+          <strong>1. Buy Chickens</strong> Start by using your AVAX to purchase chickens
+        </p>
+        <p>
+          <strong>2. Compound</strong> To maximize your earnings, you can compound your earnings daily
+        </p>
+        <p>
+          <strong>3. Claim Rewards</strong> You can claim your rewards at any time and withdraw them
+          to your wallet
+        </p>
+        <p>
+          The key to maximizing your rewards is based on the number of chicken miners you have and
+          the frequency with which you reinvest the eggs they lay. The more chicken miners you
+          gather and the more consistently you utilize their eggs, either by reinvesting or
+          expanding your flock, the higher your potential for earning additional rewards.
+        </p>
+        <TextContainer>
+          PEPE MINER
+          <DisplayLine lineInfo={{ name: "TVL", value: "$100,000,000" }}></DisplayLine>
+          <DisplayLine lineInfo={{ name: "Contract", value: "100,000 $AVAX" }}></DisplayLine>
+          <DisplayLine lineInfo={{ name: "Pepe Miners", value: "42069" }}></DisplayLine>
+          <DisplayLine lineInfo={{ name: "Your Rewards", value: "1234 $AVAX" }}></DisplayLine>
+          <DisplayLine lineInfo={{ name: "Claim Power", value: "100%" }}></DisplayLine>
+          PEPE STATS
+          <DisplayLine lineInfo={{ name: "Daily Returns", value: "4-12%" }}></DisplayLine>
+          <DisplayLine lineInfo={{ name: "APR", value: "~9999%" }}></DisplayLine>
+          <DisplayLine lineInfo={{ name: "Dev Fee", value: "5%" }}></DisplayLine>
+        </TextContainer>
+        <p>
+          Withdrawing will reset the <strong>claim power to 50%</strong>. Claim power regenerates
+          10% per day till 100%.
+        </p>
+      </div>
+      <VerticalStack>
+        <Button buttonText="Seed Market 🌱" handleClick={handleSeedMarket}></Button>
+        <Button buttonText="Buy Pepe 🐸" handleClick={handleBuyPepe}></Button>
+        <Button buttonText="Compound 🔄" handleClick={handleCompound}></Button>
+        <Button buttonText="Claim 💰" handleClick={handleClaim}></Button>
+      </VerticalStack>
     </VerticalStack>
-  </VerticalStack>
+  </ScreenContainer>
 </SectionContainer>
 
 <style lang="scss">
   @import "../styles/colours";
   @import "../styles/breakpoints.scss";
 
-  title {
-    width: auto;
+  p {
+    box-sizing: border-box;
+  }
 
+  .info-container {
+    padding: 0rem 1rem;
+    box-sizing: border-box;
     display: flex;
-    align-items: center;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 400px;
+  }
 
+  strong {
     color: $secondary_1;
-    text-shadow: 0px 0px 36px $secondary_1;
-    font-size: 9em;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
-
-  section-title {
-    width: auto;
-
-    display: flex;
-    align-items: center;
-
-    color: $secondary_1;
-    text-shadow: 0px 0px 36px $secondary_1;
-    font-size: 4.5em;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
-
-  subtitle {
-    width: auto;
-
-    display: flex;
-    align-items: center;
-
-    color: $secondary_1;
-    text-shadow: 0px 0px 36px $secondary_1;
-    font-size: 2em;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
-
-  description {
-    max-width: 440px;
-    width: 440px;
-
-    align-items: center;
-    text-align: center;
-
-    color: $primary;
-    font-size: 1.5em;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 32px;
-    word-break: normal;
-  }
-
-  game-rule {
-    align-items: left;
-    text-align: left;
-    max-width: 440px;
-    align-self: left;
-    align-content: left;
-
-    color: $primary;
-    font-size: 1em;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 32px;
-    word-break: normal;
-    text-shadow: 0px 0px 36px $secondary_1;
-    padding: 1rem;
-  }
-
-  @media (max-width: $large) {
-    title {
-      font-size: 4.5rem;
-    }
-
-    section-title {
-      font-size: 2.5rem;
-    }
-
-    subtitle {
-      font-size: 1.5rem;
-    }
-
-    description {
-      font-size: 1rem;
-      width: 300px;
-    }
-
-    game-rule {
-      font-size: 1rem;
-    }
   }
 
   @keyframes spinCoin {

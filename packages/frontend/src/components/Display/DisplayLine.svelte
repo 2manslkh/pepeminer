@@ -26,23 +26,15 @@
   container {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
-    padding: 0px;
-    gap: 14px;
-
-    width: 300px;
-    height: 21px;
-
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    word-break: keep-all;
+    justify-content: space-between;
+    width: 100%;
   }
   info-name {
     width: auto;
     height: 21px;
 
-    font-family: "Poppins";
+    font-family: "ModeSeven";
+
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -50,8 +42,7 @@
 
     display: flex;
     align-items: center;
-
-    color: $primary;
+    color: $secondary_1;
 
     flex: none;
     order: 0;
@@ -65,10 +56,7 @@
     overflow-x: scroll;
     gap: 10px;
 
-    width: 100%;
     height: 21px;
-
-    background: $primary;
   }
 
   info-value-bg::-webkit-scrollbar {
@@ -76,16 +64,16 @@
   }
 
   info-value {
-    font-family: "Courier Prime";
+    font-family: "ModeSeven";
     font-style: normal;
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 1.5rem;
     line-height: 17px;
 
     display: flex;
     align-items: center;
+    color: $primary;
 
-    color: $secondary_1;
     width: 100%;
     animation: fadeInAnimation 0.5s ease-in-out;
   }

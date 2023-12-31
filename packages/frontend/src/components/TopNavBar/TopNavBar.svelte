@@ -8,6 +8,7 @@
   import TelegramLogo from "../SocialIcons/TelegramLogo.svelte";
   import TwitterLogo from "../SocialIcons/TwitterLogo.svelte";
 
+  import { wagmiClient } from "../../stores";
   let screenSize: number;
   let modalOpen = false;
 
@@ -20,26 +21,53 @@
 <svelte:window bind:innerWidth={screenSize} />
 
 <header-wrapper>
-  {#if screenSize >= breakpoints.large}
-    <RowContainer>
-      <header-logo>
-        <img src={Logo} alt="logo" width="192px" />
-        <!-- <header-title>PROJECT_NAME</header-title> -->
-      </header-logo>
-    </RowContainer>
-    <RowContainer>
-      <TelegramLogo />
-      <TwitterLogo />
-      {#if $web3Modal}
+  <RowContainer>
+    <header-logo>
+      <img src={Logo} alt="logo" width="192px" />
+      <!-- <header-title>PROJECT_NAME</header-title> -->
+    </header-logo>
+  </RowContainer>
+  <RowContainer>
+    <TelegramLogo />
+    <TwitterLogo />
+    {#if $web3Modal}
+      <div class="w3n-wrapper">
         <w3m-button />
-      {/if}
-    </RowContainer>
-  {/if}
+      </div>
+    {/if}
+  </RowContainer>
 </header-wrapper>
 
 <style lang="scss">
   @import "../../styles/colours";
   @import "../../styles/breakpoints";
+  @keyframes glowing {
+    0% {
+      box-shadow: 0 0 5px $primary_border;
+    }
+    50% {
+      box-shadow:
+        0 0 20px $primary_border,
+        0 0 30px $primary_border;
+    }
+    100% {
+      box-shadow: 0 0 5px $primary_border;
+    }
+  }
+  .w3n-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+
+    border: 3px solid $primary_border;
+
+    box-shadow:
+      0px 0px 5px 0px $primary_border,
+      0px 0px 10px 0px $primary_border;
+    /* Inside auto layout */
+  }
   header-logo {
     /* Auto layout */
 

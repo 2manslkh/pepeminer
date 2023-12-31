@@ -42,7 +42,6 @@
       ],
     });
 
-    // parse results into store
     let _data: PepeMinerData = {
       user_chickens: results[0].result as bigint,
       contract_balance: results[1].result as bigint,
