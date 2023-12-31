@@ -11,13 +11,17 @@
   import VerticalStack from "../components/Stack/VerticalStack.svelte";
   import { pepeMinerABI, prepareWritePepeMiner, readPepeMiner } from "../generated";
   import { formatEther, getChainContractAddress, parseEther, zeroAddress } from "viem";
-  import { addToast, amountDeposited, data, ethInput } from "../stores";
+  import { type PepeMinerData, addToast, amountDeposited, data, ethInput } from "../stores";
   import { onMount } from "svelte";
   import SectionContainer from "../components/Container/SectionContainer.svelte";
   import TextContainer from "../components/Container/TextContainer.svelte";
   import DisplayLine from "../components/Display/DisplayLine.svelte";
   import ScreenContainer from "../components/Container/ScreenContainer.svelte";
   import InputBox from "../components/Input/InputBox.svelte";
+
+  let _data: PepeMinerData;
+
+  data.subscribe((value) => (_data = value));
 
   async function handleSeedMarket() {
     const chainID = await getNetwork();
@@ -152,21 +156,21 @@
           <DisplayLine
             lineInfo={{
               name: "TVL",
-              value: `$ ${(Number(formatEther($data.contract_balance)) * 40).toFixed(3)}`,
+              value: `$ ${(Number(formatEther(_data.contract_balance)) * 40).toFixed(3)}`,
             }}
           ></DisplayLine>
           <DisplayLine
             lineInfo={{
               name: "Contract",
-              value: `${Number(formatEther($data.contract_balance)).toFixed(3)} $AVAX`,
+              value: `${Number(formatEther(_data.contract_balance)).toFixed(3)} $AVAX`,
             }}
           ></DisplayLine>
-          <DisplayLine lineInfo={{ name: "Pepe Miners", value: `${$data.user_miners}` }}
+          <DisplayLine lineInfo={{ name: "Pepe Miners", value: `${_data.user_miners}` }}
           ></DisplayLine>
           <DisplayLine
             lineInfo={{
               name: "Your Rewards",
-              value: `${Number(formatEther($data.user_profit ? $data.user_profit : 0n)).toFixed(
+              value: `${Number(formatEther(_data.user_profit ? _data.user_profit : 0n)).toFixed(
                 6,
               )} $AVAX`,
             }}
