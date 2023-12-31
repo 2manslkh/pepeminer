@@ -190,7 +190,6 @@
         </div>
         <Button buttonText="Compound 🔄" handleClick={handleCompound}></Button>
         <Button buttonText="Claim 💰" handleClick={handleClaim}></Button>
-        <Button buttonText="test toast" handleClick={handleTestToast}></Button>
       </VerticalStack>
     </VerticalStack>
   </ScreenContainer>
