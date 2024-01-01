@@ -17,6 +17,14 @@
     overflow-y: scroll;
     overflow-x: hidden;
     word-break: keep-all;
+    border: 3px solid $primary;
+    border-radius: 10px;
+    box-shadow:
+      0px 0px 4.896px 0px $secondary_1,
+      0px 0px 9.792px 0px $secondary_1,
+      0px 0px 34.272px 0px $secondary_1;
+    background-color: rgba(45, 41, 41, 0.9);
+    padding: 2rem 0rem;
   }
 
   container::-webkit-scrollbar-thumb {

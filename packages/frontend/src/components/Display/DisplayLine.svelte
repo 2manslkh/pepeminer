@@ -34,16 +34,16 @@
     width: auto;
     height: 21px;
 
-    font-family: "ModeSeven";
+    font-family: "GameStage";
 
     font-style: normal;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 1rem;
     line-height: 21px;
 
     display: flex;
     align-items: center;
-    color: $secondary_1;
+    color: $primary;
 
     flex: none;
     order: 0;
@@ -65,15 +65,15 @@
   }
 
   info-value {
-    font-family: "ModeSeven";
+    font-family: "GameStage";
     font-style: normal;
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 1rem;
     line-height: 17px;
 
     display: flex;
     align-items: center;
-    color: $primary;
+    color: $secondary_1;
 
     width: 100%;
     animation: fadeInAnimation 0.5s ease-in-out;
