@@ -18,6 +18,7 @@
   import DisplayLine from "../components/Display/DisplayLine.svelte";
   import ScreenContainer from "../components/Container/ScreenContainer.svelte";
   import InputBox from "../components/Input/InputBox.svelte";
+  import ReferralCode from "../components/Input/ReferralCode.svelte";
 
   let _data: PepeMinerData;
 
@@ -137,8 +138,9 @@
   <ScreenContainer>
     <VerticalStack>
       <div class="info-container">
+        <p class="title">EARN UP TO 4 - 12% PER DAY!</p>
         <p>
-          <strong>1. Buy Pepes</strong> Start by using your AVAX to purchase pepes
+          <strong>1. Buy Pepes Miners</strong> Start by using your AVAX to purchase pepe miners
         </p>
         <p>
           <strong>2. Compound</strong> To maximize your earnings, you can compound your earnings daily
@@ -148,11 +150,12 @@
           to your wallet
         </p>
         <p>
-          Maximize your PepeMiner rewards by increasing your Pepe miners and regularly reinvesting
-          the tokens they produce. More miners and strategic reinvestment lead to higher earnings.
+          The key to maximizing your rewards lies in the quantity of Pepe Miners you hold and how
+          frequently you compound them. The more Pepe Miners you accumulate and the more often you
+          reinvest your rewards, the greater the potential for earning more rewards
         </p>
         <TextContainer>
-          PEPE MINER
+          <section-header>BUY PEPE MINERS</section-header>
           <DisplayLine
             lineInfo={{
               name: "TVL",
@@ -167,6 +170,17 @@
           ></DisplayLine>
           <DisplayLine lineInfo={{ name: "Pepe Miners", value: `${_data.user_miners}` }}
           ></DisplayLine>
+          <div class="buy-pepe">
+            <InputBox></InputBox>
+            <Button buttonText="Buy Pepe 🐸" handleClick={handleBuyPepe}></Button>
+          </div>
+        </TextContainer>
+        <TextContainer>
+          <section-header>REFER TO EARN 10%</section-header>
+          <ReferralCode></ReferralCode>
+        </TextContainer>
+        <TextContainer>
+          <section-header>CLAIM REWARDS</section-header>
           <DisplayLine
             lineInfo={{
               name: "Your Rewards",
@@ -176,24 +190,22 @@
             }}
           ></DisplayLine>
           <DisplayLine lineInfo={{ name: "Claim Power", value: "100%" }}></DisplayLine>
-          PEPE STATS
+          <p>
+            <strong>CLAIMING</strong> will reset the claim power to 50% Claim power regenerates 10% per
+            day till 100%
+          </p>
+          <Button buttonText="Compound 🔄" handleClick={handleCompound}></Button>
+          <Button buttonText="Claim 💰" handleClick={handleClaim}></Button>
+        </TextContainer>
+        <TextContainer>
+          <section-header>PEPE MINER STATS</section-header>
           <DisplayLine lineInfo={{ name: "Daily Returns", value: "4-12%" }}></DisplayLine>
           <DisplayLine lineInfo={{ name: "APR", value: "~9999%", bling: "bling" }}></DisplayLine>
           <DisplayLine lineInfo={{ name: "Dev Fee", value: "5%" }}></DisplayLine>
         </TextContainer>
-        <p>
-          Withdrawing will reset the <strong>claim power to 50%</strong>. Claim power regenerates
-          10% per day till 100%.
-        </p>
       </div>
       <VerticalStack>
         <Button buttonText="Seed Market 🌱" handleClick={handleSeedMarket}></Button>
-        <div class="buy-pepe">
-          <InputBox></InputBox>
-          <Button buttonText="Buy Pepe 🐸" handleClick={handleBuyPepe}></Button>
-        </div>
-        <Button buttonText="Compound 🔄" handleClick={handleCompound}></Button>
-        <Button buttonText="Claim 💰" handleClick={handleClaim}></Button>
       </VerticalStack>
     </VerticalStack>
   </ScreenContainer>
@@ -205,6 +217,40 @@
 
   p {
     box-sizing: border-box;
+  }
+
+  section-header {
+    text-shadow:
+      1px 1px 0 $primary,
+      -1px 1px 0 $primary,
+      1px -1px 0 $primary,
+      -1px -1px 0 $primary;
+    font-family: "GameStage";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 21px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    color: $secondary_1;
+  }
+
+  .title {
+    text-shadow: 0px 0px 36.288px #e84142;
+    font-family: "GameStage";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    /* outline: 3px solid $primary; */
+
+    background: linear-gradient(180deg, #e84142 0%, rgba(255, 233, 233, 0) 100%);
+    background-clip: text;
+
+    margin: 0;
   }
 
   .buy-pepe {

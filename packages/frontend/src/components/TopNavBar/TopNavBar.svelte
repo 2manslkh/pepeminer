@@ -1,6 +1,6 @@
 <script lang="ts">
   // variables
-  import Logo from "../../public/images/Logo.svg";
+  import Logo from "../../public/images/logo.svg";
   import { web3Modal } from "../../stores";
   import { breakpoints } from "../../styles/breakpoints";
   import RowContainer from "../Container/RowContainer.svelte";
@@ -23,9 +23,9 @@
 <header-wrapper>
   <RowContainer>
     <header-logo>
-      <!-- <img src={Logo} alt="logo" width="192px" /> -->
+      <img src={Logo} alt="logo" width="100%" />
       <!-- <header-title>PROJECT_NAME</header-title> -->
-      PEPE MINER
+      <!-- PEPE MINER -->
     </header-logo>
   </RowContainer>
   <RowContainer>
@@ -70,16 +70,12 @@
     /* Inside auto layout */
   }
   header-logo {
-    /* Auto layout */
-    font-family: "ModeSeven";
-    font-style: normal;
-    font-weight: 600;
-    font-size: 32px;
-    color: $primary;
-
-    align-items: center;
-    box-sizing: border-box;
+    width: 640px;
+    @media screen and (max-width: $large) {
+      width: 400px;
+    }
   }
+
   header-wrapper {
     display: flex;
     flex-direction: row;
@@ -89,7 +85,7 @@
 
     width: 100%;
     max-width: 1440px;
-    gap: 2rem;
+    gap: 1rem;
     padding: 32px;
 
     @media screen and (max-width: $large) {

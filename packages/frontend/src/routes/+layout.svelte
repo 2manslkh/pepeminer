@@ -49,9 +49,14 @@
     src: url("../public/fonts/modeseven-font/Modeseven-L3n5.ttf");
   }
 
+  @font-face {
+    font-family: "GameStage";
+    src: url("../public/fonts/game-stage/ttf/game-stage-game-stage-regular-400.ttf");
+  }
+
   header {
     background: transparent;
-    font-family: "ModeSeven";
+    font-family: "GameStage";
     position: fixed;
     display: flex;
     align-self: center;
@@ -62,7 +67,7 @@
   }
 
   main {
-    font-family: "ModeSeven";
+    font-family: "GameStage";
     color: $primary;
     border: none;
     display: flex;
@@ -74,7 +79,7 @@
   }
 
   pepe-underlay {
-    background: url("../public/images/pepe-ascii.png") no-repeat center center fixed;
+    background: url("../public/images/pepeminer_bg.png") no-repeat center center fixed;
     position: absolute;
     width: 100%;
     height: 100%;

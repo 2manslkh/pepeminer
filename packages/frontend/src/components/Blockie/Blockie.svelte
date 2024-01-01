@@ -146,7 +146,7 @@
   onMount(() => {
     console.log(id);
     var icon = createIcon(options);
-    const menu = document.querySelector(`#${id}`);
+    const menu = document.querySelector(`${id}`);
     menu?.appendChild(icon); // icon is a canvas element
   });
 </script>
