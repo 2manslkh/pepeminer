@@ -1,6 +1,6 @@
 <script lang="ts">
   // variables
-  import Logo from "../../public/images/logo.svg";
+  import Logo from "../../public/images/pepe-miners-logo.svg";
   import { web3Modal } from "../../stores";
   import { breakpoints } from "../../styles/breakpoints";
   import RowContainer from "../Container/RowContainer.svelte";
