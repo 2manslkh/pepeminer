@@ -12,7 +12,6 @@ export const GET: RequestHandler = async () => {
 
   const response = createOrder({ item: "a", amount: "1" });
   const obj = toObject(response);
-  console.log(obj);
 
   return json(obj);
 };

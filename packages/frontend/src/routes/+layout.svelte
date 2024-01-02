@@ -19,7 +19,6 @@
 
   setInterval(async () => {
     if ($wagmiClient) {
-      console.log("fetching");
       $data = await fetchPepeMiningData();
     }
   }, 10000);

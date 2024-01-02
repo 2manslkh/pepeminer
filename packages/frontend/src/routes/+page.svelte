@@ -189,7 +189,14 @@
               )} $AVAX`,
             }}
           ></DisplayLine>
-          <DisplayLine lineInfo={{ name: "Claim Power", value: "100%" }}></DisplayLine>
+          <DisplayLine
+            lineInfo={{
+              name: "Claim Power",
+              value: `${(
+                Number(formatEther(_data.claim_power ? _data.claim_power : 0n)) * 100
+              ).toFixed(2)}%`,
+            }}
+          ></DisplayLine>
           <p>
             <strong>CLAIMING</strong> will reset the claim power to 50% Claim power regenerates 10% per
             day till 100%

@@ -11,7 +11,6 @@ import { getPepeMiner } from "../generated";
 
 export async function fetchPepeMiningData(): Promise<PepeMinerData> {
     let network = await getNetwork();
-    console.log("🚀 | fetchPepeMiningData | network:", network)
     let account = await getAccount();
     if (!account.address) {
         return {
@@ -34,7 +33,6 @@ export async function fetchPepeMiningData(): Promise<PepeMinerData> {
             { ...pepeContract, functionName: "getChickensSinceLastHatch", args: [account.address] },
         ],
     });
-    console.log("🚀 | fetchPepeMiningData | results:", results)
 
     let _data: PepeMinerData = {
         contract_balance: results[0].result as bigint,
@@ -75,7 +73,16 @@ export async function fetchPepeMiningData(): Promise<PepeMinerData> {
     });
     _data.user_profit = userProfit;
 
-    console.log(_data)
+    // Get user Profit
+    let claimPower = await readContract({
+        address: pepeContract.address,
+        abi: pepeContract.abi,
+        chainId: chain.id as any,
+        functionName: "getHalvingPercentage",
+        account: account.address,
+    });
+    _data.claim_power = claimPower;
+
 
     return _data;
 }

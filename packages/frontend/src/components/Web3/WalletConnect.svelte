@@ -1,19 +1,9 @@
 <script lang="ts">
   import { sepolia, hardhat, avalanche } from "@wagmi/core/chains";
   import { wagmiClient, web3Modal, account, data, type PepeMinerData } from "../../stores";
-  import {
-    type Chain,
-    configureChains,
-    createConfig,
-    getAccount,
-    getNetwork,
-    readContracts,
-    readContract,
-    watchNetwork,
-  } from "@wagmi/core";
+  import { getAccount, watchNetwork } from "@wagmi/core";
   import { createWeb3Modal, defaultWagmiConfig } from "@web3modal/wagmi";
   import { onMount } from "svelte";
-  import { getPepeMiner } from "../../generated";
   import { fetchPepeMiningData } from "$lib/data";
 
   export let projectId: string;
@@ -27,7 +17,7 @@
   };
 
   onMount(() => {
-    const chains = [avalanche];
+    const chains = [avalanche, hardhat];
     const wagmiConfig = defaultWagmiConfig({ chains, projectId, metadata });
     $wagmiClient = wagmiConfig;
     $web3Modal = createWeb3Modal({
@@ -46,7 +36,6 @@
     });
     $account = getAccount();
     const unwatch = watchNetwork(async (network) => {
-      console.log(network);
       $data = await fetchPepeMiningData();
     });
   });

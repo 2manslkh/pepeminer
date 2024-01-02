@@ -21,13 +21,15 @@ export type PepeMinerData = {
     user_miners?: bigint,
     user_chickens?: bigint,
     user_profit?: bigint,
+    claim_power?: bigint,
 };
 export const data = writable<PepeMinerData>({
     user_chickens: 0n,
     contract_balance: 0n,
     user_miners: 0n,
     halving_percentage: 0n,
-    chickens_since_last_hatch: 0n
+    chickens_since_last_hatch: 0n,
+    claim_power: 0n,
 });
 
 
