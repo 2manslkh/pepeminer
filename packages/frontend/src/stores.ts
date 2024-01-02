@@ -2,6 +2,7 @@ import { readable, writable } from "svelte/store";
 
 import type { GetAccountResult } from "@wagmi/core";
 import type { Web3Modal } from "@web3modal/wagmi/dist/types/src/client";
+import { zeroAddress } from "viem";
 
 export const wagmiClient = writable();
 export const account = writable<GetAccountResult>();
@@ -32,6 +33,7 @@ export const data = writable<PepeMinerData>({
 
 export const toasts = writable<Toast[]>([]);
 export const showToast = writable<boolean>(false);
+export const ref = writable<`0x${string}`>(zeroAddress);
 
 
 interface Toast {

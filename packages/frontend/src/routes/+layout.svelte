@@ -2,17 +2,20 @@
   import WalletConnect from "../components/Web3/WalletConnect.svelte";
 
   import TopNavBar from "../components/TopNavBar/TopNavBar.svelte";
-  import { type PepeMinerData, data, showToast, wagmiClient, web3Modal } from "../stores";
+  import { type PepeMinerData, data, showToast, wagmiClient, web3Modal, ref } from "../stores";
   import Toasts from "../components/Toast/Toasts.svelte";
   import { fetchPepeMiningData } from "$lib/data";
+  import { onMount } from "svelte";
+  import { zeroAddress } from "viem";
 
   const projectId = import.meta.env.VITE_WEB3MODAL_PROJECT_ID;
-  // Throw Error if no projectId is set
-  if (!projectId) {
-    console.log(
-      "VITE_WEB3MODAL_PROJECT_ID is not set. Please set it in .env! https://cloud.walletconnect.com/app",
-    );
-  }
+  onMount(() => {
+    const params = new URLSearchParams(window.location.search);
+    let _ref = params.get("ref");
+    if (_ref) {
+      $ref = _ref as `0x${string}`;
+    }
+  });
 
   setInterval(async () => {
     if ($wagmiClient) {

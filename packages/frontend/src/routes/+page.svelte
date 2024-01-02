@@ -11,7 +11,7 @@
   import VerticalStack from "../components/Stack/VerticalStack.svelte";
   import { pepeMinerABI, prepareWritePepeMiner, readPepeMiner } from "../generated";
   import { formatEther, getChainContractAddress, parseEther, zeroAddress } from "viem";
-  import { type PepeMinerData, addToast, amountDeposited, data, ethInput } from "../stores";
+  import { type PepeMinerData, addToast, amountDeposited, data, ethInput, ref } from "../stores";
   import { onMount } from "svelte";
   import SectionContainer from "../components/Container/SectionContainer.svelte";
   import TextContainer from "../components/Container/TextContainer.svelte";
@@ -52,7 +52,7 @@
     const config = await prepareWritePepeMiner({
       chainId: chainID.chain?.id as any,
       functionName: "deposit",
-      args: [zeroAddress], //TODO: replace with referral address
+      args: [$ref], //TODO: replace with referral address
       value: parseEther($ethInput),
     });
     const { hash } = await writeContract(config);
@@ -78,7 +78,7 @@
     const config = await prepareWritePepeMiner({
       chainId: chainID.chain?.id as any,
       functionName: "compound",
-      args: [zeroAddress], //TODO: replace with referral address
+      args: [$ref], //TODO: replace with referral address
     });
     const { hash } = await writeContract(config);
     addToast({
@@ -216,6 +216,7 @@
   @import "../styles/breakpoints.scss";
 
   p {
+    margin: 0;
     box-sizing: border-box;
   }
 
@@ -267,6 +268,7 @@
     justify-content: center;
     max-width: 400px;
     width: 100%;
+    gap: 1rem;
 
     word-break: keep-all;
   }
