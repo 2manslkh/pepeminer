@@ -27,7 +27,7 @@
   };
 
   onMount(() => {
-    const chains = [avalanche, hardhat];
+    const chains = [avalanche];
     const wagmiConfig = defaultWagmiConfig({ chains, projectId, metadata });
     $wagmiClient = wagmiConfig;
     $web3Modal = createWeb3Modal({
