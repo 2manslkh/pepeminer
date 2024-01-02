@@ -7,6 +7,7 @@
   import TextContainer from "../Container/TextContainer.svelte";
   import TelegramLogo from "../SocialIcons/TelegramLogo.svelte";
   import TwitterLogo from "../SocialIcons/TwitterLogo.svelte";
+  import GitbookLogo from "../SocialIcons/GitbookLogo.svelte";
 
   import { wagmiClient } from "../../stores";
   let screenSize: number;
@@ -31,6 +32,7 @@
   <RowContainer>
     <TelegramLogo />
     <TwitterLogo />
+    <GitbookLogo />
     {#if $web3Modal}
       <div class="w3n-wrapper">
         <w3m-button />
