@@ -29,6 +29,7 @@
     const config = await prepareWritePepeMiner({
       chainId: chainID.chain?.id as any,
       functionName: "seedMarket",
+      value: parseEther("10"),
     });
     const { hash } = await writeContract(config);
     addToast({

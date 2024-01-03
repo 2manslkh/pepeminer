@@ -18,12 +18,12 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId, task }: any
   // Verify the contract using hardhat verify task
 
   // if not localhost:
-  if (chainId != '31337') {
-    await hre.run("verify:verify", {
-      address: contract.address,
-      constructorArguments: [],
-    });
-  }
+  // if (chainId != '31337') {
+  //   await hre.run("verify:verify", {
+  //     address: contract.address,
+  //     constructorArguments: [],
+  //   });
+  // }
 
 };
 

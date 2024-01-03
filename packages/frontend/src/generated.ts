@@ -18,7 +18,7 @@ import {
 
 /**
  * -
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x47A35E631a8f1bF9CbcdAEf91384D4B8ffd41B97)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xdb867B70CC8a1aC77935A301fc362305E48097D7)
  */
 export const pepeMinerABI = [
   { stateMutability: 'nonpayable', type: 'constructor', inputs: [] },
@@ -208,16 +208,16 @@ export const pepeMinerABI = [
 
 /**
  * -
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x47A35E631a8f1bF9CbcdAEf91384D4B8ffd41B97)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xdb867B70CC8a1aC77935A301fc362305E48097D7)
  */
 export const pepeMinerAddress = {
   31337: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
-  11155111: '0x47A35E631a8f1bF9CbcdAEf91384D4B8ffd41B97',
+  11155111: '0xdb867B70CC8a1aC77935A301fc362305E48097D7',
 } as const
 
 /**
  * -
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x47A35E631a8f1bF9CbcdAEf91384D4B8ffd41B97)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xdb867B70CC8a1aC77935A301fc362305E48097D7)
  */
 export const pepeMinerConfig = { address: pepeMinerAddress, abi: pepeMinerABI } as const
 
@@ -237,7 +237,7 @@ export const reentrancyGuardABI = [
  * Wraps __{@link getContract}__ with `abi` set to __{@link pepeMinerABI}__.
  *
  * -
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x47A35E631a8f1bF9CbcdAEf91384D4B8ffd41B97)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xdb867B70CC8a1aC77935A301fc362305E48097D7)
  */
 export function getPepeMiner(
   config: Omit<GetContractArgs, 'abi' | 'address'> & { chainId?: keyof typeof pepeMinerAddress },
@@ -253,7 +253,7 @@ export function getPepeMiner(
  * Wraps __{@link readContract}__ with `abi` set to __{@link pepeMinerABI}__.
  *
  * -
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x47A35E631a8f1bF9CbcdAEf91384D4B8ffd41B97)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xdb867B70CC8a1aC77935A301fc362305E48097D7)
  */
 export function readPepeMiner<
   TAbi extends readonly unknown[] = typeof pepeMinerABI,
@@ -274,7 +274,7 @@ export function readPepeMiner<
  * Wraps __{@link writeContract}__ with `abi` set to __{@link pepeMinerABI}__.
  *
  * -
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x47A35E631a8f1bF9CbcdAEf91384D4B8ffd41B97)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xdb867B70CC8a1aC77935A301fc362305E48097D7)
  */
 export function writePepeMiner<
   TFunctionName extends string,
@@ -302,7 +302,7 @@ export function writePepeMiner<
  * Wraps __{@link prepareWriteContract}__ with `abi` set to __{@link pepeMinerABI}__.
  *
  * -
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x47A35E631a8f1bF9CbcdAEf91384D4B8ffd41B97)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xdb867B70CC8a1aC77935A301fc362305E48097D7)
  */
 export function prepareWritePepeMiner<
   TAbi extends readonly unknown[] = typeof pepeMinerABI,

@@ -207,7 +207,7 @@ module.exports = {
     sepolia: {
       url: process.env.ALCHEMY_PROVIDER_SEPOLIA || '',
       chainId: 11155111,
-      accounts: ACCOUNT,
+      accounts: [PRIVATE_KEY_TESTNET],
       saveDeployments: true,
     },
     thundercore_testnet: {
