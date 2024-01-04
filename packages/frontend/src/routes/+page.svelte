@@ -136,7 +136,7 @@
 
 <svelte:window bind:innerWidth={screenSize} />
 <SectionContainer id="main" stripes={true}>
-  <ScreenContainer>
+  <!-- <ScreenContainer>
     <VerticalStack>
       <div class="info-container">
         <p class="title">EARN UP TO 4 - 12% PER DAY!</p>
@@ -216,7 +216,7 @@
         <Button buttonText="Seed Market 🌱" handleClick={handleSeedMarket}></Button>
       </VerticalStack>
     </VerticalStack>
-  </ScreenContainer>
+  </ScreenContainer> -->
 </SectionContainer>
 
 <style lang="scss">
